@@ -18,7 +18,10 @@ while (true) {
     curl_close($ch);
     $lastMessage = end($result['result']);
 
-    if ($lastSendTime <= $lastMessage['message']['date'] && $lastMessage['message']['date'] >= (time() - 1800)) {
+    if (in_array(mb_strtolower($lastMessage['message']['text']), ['ок', 'дала', 'не заебуй']) &&
+        $lastSendTime <= $lastMessage['message']['date'] &&
+        $lastMessage['message']['date'] >= (time() - 1800)
+    ) {
         echo " SKIP \n";
         continue;
     }
