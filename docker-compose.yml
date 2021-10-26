@@ -41,12 +41,3 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: sait
-  redis:
-    image: redis
-    container_name: redis
-    restart: unless-stopped
-    tty: true
-    ports:
-      - "${REDIS_PORT}:6379"
-    networks:
-      - app-network
