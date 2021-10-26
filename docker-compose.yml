@@ -76,7 +76,7 @@ services:
     restart: unless-stopped
     tty: true
     ports:
-      - "${REDIS_PORT}:6379"
+      - "9000:6379"
     networks:
       - app-network
 
