@@ -1,10 +1,8 @@
 FROM php:7.3-fpm
 
-# Copy composer.lock and composer.json
-COPY composer.lock composer.json /var/www/
 
 # Set working directory
-WORKDIR /var/www
+WORKDIR /var/www/telega
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
@@ -49,10 +47,10 @@ RUN useradd -u 1000 -ms /bin/bash -g www www
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Copy existing application directory contents
-COPY . /var/www
+COPY . /var/www/telega
 
 # Copy existing application directory permissions
-COPY --chown=www:www . /var/www
+COPY --chown=www:www . /var/www/telega
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
