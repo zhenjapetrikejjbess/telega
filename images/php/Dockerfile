@@ -42,8 +42,9 @@ COPY ./supervisor /etc/supervisor
 
 CMD ["/usr/bin/supervisord"]
 
-RUN service supervisor restart
-RUN supervisorctl reread
+RUN sudo service supervisor stop
+RUN sudo service supervisor start
+RUN sudo supervisorctl reread
 RUN supervisorctl update
 RUN supervisorctl start messenger-consume:*
 
