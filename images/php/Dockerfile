@@ -30,7 +30,7 @@ RUN mkdir -p /var/log/supervisor
 
 COPY ./supervisor /etc/supervisor
 
-CMD ["/usr/bin/supervisord"]
+#CMD ["/usr/bin/supervisord"]
 
 RUN service supervisor restart
 RUN supervisorctl reread
