@@ -43,8 +43,8 @@ COPY ./supervisor /etc/supervisor
 #CMD ["/usr/bin/supervisord"]
 
 RUN service supervisor restart
-RUN sudo supervisorctl reread
-RUN sudo supervisorctl update
+RUN supervisorctl reread
+RUN supervisorctl update
 RUN supervisorctl start messenger-consume:*
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
