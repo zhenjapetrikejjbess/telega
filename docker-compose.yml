@@ -12,7 +12,7 @@ services:
     # монтируем директории, слева директории на основной машине, справа - куда они монтируются в контейнере
     volumes:
       - ./hosts:/etc/nginx/conf.d
-      - ./www:/var/www
+      - ./www:/var/www/telega
       - ./logs/nginx:/var/log/nginx
     # nginx должен общаться с php контейнером
     links:
