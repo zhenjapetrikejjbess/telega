@@ -23,6 +23,16 @@ RUN apt-get update && apt-get install -y \
 	&& docker-php-ext-configure gd --with-freetype --with-jpeg \
         && docker-php-ext-install -j$(nproc) gd
 
+# END OF SUPERVISOR CONFIG
+# Куда же без composer'а.
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Добавим свой php.ini, можем в нем определять свои значения конфига
+ADD php.ini /usr/local/etc/php/conf.d/40-custom.ini
+
+# Указываем рабочую директорию для PHP
+WORKDIR /var/www/telega
+
 # SUPERVISOR CONFIG
 RUN apt-get install -y supervisor
 
@@ -36,16 +46,6 @@ RUN service supervisor restart
 RUN sudo supervisorctl reread
 RUN sudo supervisorctl update
 RUN supervisorctl start messenger-consume:*
-# END OF SUPERVISOR CONFIG
-# Куда же без composer'а.
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-
-# Добавим свой php.ini, можем в нем определять свои значения конфига
-ADD php.ini /usr/local/etc/php/conf.d/40-custom.ini
-
-# Указываем рабочую директорию для PHP
-WORKDIR /var/www/telega
-
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
