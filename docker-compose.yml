@@ -17,7 +17,6 @@ services:
     volumes:
       - ./:/var/www/telega
       - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
-      - ./supervisord.conf:/etc/supervisor/conf.d/supervisord.conf
     networks:
       - app-network
 
