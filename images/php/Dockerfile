@@ -52,7 +52,7 @@ COPY . /var/www/telega
 # Copy existing application directory permissions
 COPY --chown=www:www . /var/www/telega
 
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY images/supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 CMD ["/usr/bin/supervisord"]
 
