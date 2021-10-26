@@ -23,6 +23,20 @@ RUN apt-get update && apt-get install -y \
 	&& docker-php-ext-configure gd --with-freetype --with-jpeg \
         && docker-php-ext-install -j$(nproc) gd
 
+# SUPERVISOR CONFIG
+RUN apt-get install -y supervisor
+
+RUN mkdir -p /var/log/supervisor
+
+COPY ./supervisor /etc/supervisor
+
+CMD ["/usr/bin/supervisord"]
+
+RUN service supervisor restart
+RUN supervisorctl reread
+RUN supervisorctl update
+RUN supervisorctl start messenger-consume:*
+# END OF SUPERVISOR CONFIG
 # Куда же без composer'а.
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
@@ -30,9 +44,16 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 ADD php.ini /usr/local/etc/php/conf.d/40-custom.ini
 
 # Указываем рабочую директорию для PHP
-WORKDIR /var/www
+WORKDIR /var/www/telega
 
+
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+RUN curl -sS https://get.symfony.com/cli/installer | bash
+
+RUN mv /root/.symfony/bin/symfony /usr/local/bin/symfony
 # Запускаем контейнер
 # Из документации: The main purpose of a CMD is to provide defaults for an executing container. These defaults can include an executable,
 # or they can omit the executable, in which case you must specify an ENTRYPOINT instruction as well.
 CMD ["php-fpm"]
+
