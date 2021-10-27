@@ -29,4 +29,4 @@ services:
       - ./:/var/www/html
     container_name: php-73
     working_dir: /var/www/html
-    command: php -f /var/www/html/app/somescript.php
+    command: php -f /var/www/html/app/telega.php
