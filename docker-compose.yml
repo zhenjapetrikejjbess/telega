@@ -27,4 +27,4 @@ services:
     image: php
     restart: always
     command:
-      - php /app/telega.php
+      - php app/telega.php
