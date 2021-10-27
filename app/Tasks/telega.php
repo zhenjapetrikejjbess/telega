@@ -5,7 +5,7 @@ $first = true;
 
 while (true) {
 
-    if(date('H') == 22){
+    if (date('H') == 22) {
         sleep(36000);
     }
 
@@ -46,14 +46,13 @@ while (true) {
     curl_close($ch);
 
     $output = iconv('cp1251', 'utf-8', $output);
-    $output = str_replace('{"content":', '', $output);
-    $message = str_replace('"}', '', $output);
-
-
+    $output = str_replace('{"content":', "\n", $output);
+    $message = urlencode(str_replace('"}', "\n", $output));
 
     foreach ($chanenalIds as $id) {
         $url = "https://api.telegram.org/bot2050411951:AAFFpB6mbWYM-vc1At7x_cTjFbI23QJYuxk/sendMessage?chat_id=" . $id;
-        $url = $url . "&text=ДАЙ ВОДЫ СЫНУ и немного улыбнись)\n ----> " .$message . " \n (Если дала то ответь 'OK' или 'ДАЛА' или 'НЕ ЗАЕБУЙ')";
+        $url = $url . "&text=(ДАЙ ВОДЫ СЫНУ и немного улыбнись) " . $message . " (Если дала то ответь 'OK' или 'ДАЛА' или 'НЕ ЗАЕБУЙ')";
+
         $ch = curl_init();
         $optArray = [
             CURLOPT_URL => $url,
