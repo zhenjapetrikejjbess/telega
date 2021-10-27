@@ -1,76 +1,25 @@
 version: '3'
+
 services:
-
-  #PHP Service
-  php:
-    build:
-      context: .
-      dockerfile: images/php/Dockerfile
-    image: digitalocean.com/php
-    container_name: php
-    restart: always
-    tty: true
-    environment:
-      SERVICE_NAME: php
-      SERVICE_TAGS: dev
-    working_dir: /var/www/telega
-    volumes:
-      - ./:/var/www/telega
-    networks:
-      - app-network
-
-  #Nginx Service
-  nginx:
-    image: nginx:alpine
-    container_name: nginx
-    restart: always
-    tty: true
+  web:
+    image: nginx:latest
+    container_name: web
     ports:
       - "80:80"
-      - "443:443"
     volumes:
-      - ./:/var/www
-      - ./images/nginx/:/etc/nginx/conf.d/
-    networks:
-      - app-network
+      - ./docker/nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf
+      - .:/var/www/html
 
-  #MySQL Service
-  mysqldb:
-    image: mysql:5.7.22
-    container_name: mysqldb
-    restart: always
-    tty: true
-    ports:
-      - "3306:3306"
+  php:
+    build: ./docker/php
+    container_name: php
     volumes:
-      - /etc/mysql:/etc/mysql
-      - ./logs/mysql:/var/log/mysql
-      - ./mysql:/var/lib/mysql
-      - ./mysql-files:/var/lib/mysql-files
-      - ./data:/docker-entrypoint-initdb.d
-    # задаем пароль для root пользователя
-    # заливку дампа сайта и создание пользователя для доступа к базе снаружи будем делать позже
-    environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: sait
+      - .:/var/www/html
 
-  #Redis Service
-  redis:
-    image: redis
-    container_name: redis
-    restart: always
-    tty: true
+  ch_server:
+    image: yandex/clickhouse-server
+    container_name: ch_server
     ports:
-      - "9000:6379"
-    networks:
-      - app-network
-
-#Docker Networks
-networks:
-  app-network:
-    driver: bridge
-
-#Volumes
-volumes:
-  dbdata:
-    driver: local
+      - "8123:8123"
+    volumes:
+      - ./docker/db/clickhouse:/var/lib/clickhouse
