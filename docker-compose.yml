@@ -24,7 +24,7 @@ services:
     volumes:
       - ./docker/db/clickhouse:/var/lib/clickhouse
   myapp_tasks:
-    image: php:7.3
+    image: telega
     volumes:
       - ./:/var/www/html
     container_name: php-73

@@ -1,5 +1,5 @@
 {
-    "name": "kovpak/test777",
+    "name": "petrike/test777",
     "autoload": {
         "psr-4": {
             "App\\": "app/"
