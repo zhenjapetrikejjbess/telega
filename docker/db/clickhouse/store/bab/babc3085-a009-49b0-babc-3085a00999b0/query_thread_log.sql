@@ -1,4 +1,4 @@
-ATTACH TABLE _ UUID '8a2fde94-7cff-4d6e-8a2f-de947cfffd6e'
+ATTACH TABLE _ UUID '4a471688-12d8-4717-8a47-168812d88717'
 (
     `event_date` Date,
     `event_time` DateTime,
@@ -43,8 +43,9 @@ ATTACH TABLE _ UUID '8a2fde94-7cff-4d6e-8a2f-de947cfffd6e'
     `forwarded_for` String,
     `quota_key` String,
     `revision` UInt32,
-    `ProfileEvents.Names` Array(String),
-    `ProfileEvents.Values` Array(UInt64)
+    `ProfileEvents` Map(String, UInt64),
+    `ProfileEvents.Names` Array(String) ALIAS mapKeys(ProfileEvents),
+    `ProfileEvents.Values` Array(UInt64) ALIAS mapValues(ProfileEvents)
 )
 ENGINE = MergeTree
 PARTITION BY toYYYYMM(event_date)

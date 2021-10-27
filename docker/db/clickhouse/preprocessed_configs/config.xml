@@ -334,7 +334,7 @@
     <mmap_cache_size>1000</mmap_cache_size>
 
     <!-- Cache size for compiled expressions.-->
-    <compiled_expression_cache_size>1073741824</compiled_expression_cache_size>
+    <compiled_expression_cache_size>134217728</compiled_expression_cache_size>
 
     <!-- Path to data directory, with trailing slash. -->
     <path>/var/lib/clickhouse/</path>
@@ -587,7 +587,7 @@
         <port>9019</port>
     </jdbc_bridge>
     -->
-  
+
     <!-- Configuration of clusters that could be used in Distributed tables.
          https://clickhouse.tech/docs/en/operations/table_engines/distributed/
       -->
@@ -921,7 +921,7 @@
             Asynchronous metrics are updated once a minute, so there is
             no need to flush more often.
         -->
-        <flush_interval_milliseconds>60000</flush_interval_milliseconds>
+        <flush_interval_milliseconds>7000</flush_interval_milliseconds>
     </asynchronous_metric_log>
 
     <!--

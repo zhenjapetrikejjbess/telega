@@ -1,9 +1,9 @@
-ATTACH TABLE _ UUID 'ce37b83f-ef39-4bdc-8e37-b83fef39fbdc'
+ATTACH TABLE _ UUID '89f273a4-c4f7-4b20-89f2-73a4c4f77b20'
 (
     `event_date` Date,
     `event_time` DateTime,
     `event_time_microseconds` DateTime64(6),
-    `name` LowCardinality(String),
+    `metric` LowCardinality(String),
     `value` Float64
 )
 ENGINE = MergeTree

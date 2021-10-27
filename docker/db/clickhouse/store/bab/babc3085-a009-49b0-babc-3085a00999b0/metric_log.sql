@@ -1,4 +1,4 @@
-ATTACH TABLE _ UUID '292f612e-710d-4e5a-a92f-612e710dce5a'
+ATTACH TABLE _ UUID 'cc468e4f-56da-42e0-8c46-8e4f56da82e0'
 (
     `event_date` Date,
     `event_time` DateTime,
@@ -50,6 +50,8 @@ ATTACH TABLE _ UUID '292f612e-710d-4e5a-a92f-612e710dce5a'
     `ProfileEvent_DiskWriteElapsedMicroseconds` UInt64,
     `ProfileEvent_NetworkReceiveElapsedMicroseconds` UInt64,
     `ProfileEvent_NetworkSendElapsedMicroseconds` UInt64,
+    `ProfileEvent_NetworkReceiveBytes` UInt64,
+    `ProfileEvent_NetworkSendBytes` UInt64,
     `ProfileEvent_ThrottlerSleepMicroseconds` UInt64,
     `ProfileEvent_QueryMaskingRulesMatch` UInt64,
     `ProfileEvent_ReplicatedPartFetches` UInt64,
@@ -244,6 +246,8 @@ ATTACH TABLE _ UUID '292f612e-710d-4e5a-a92f-612e710dce5a'
     `CurrentMetric_OpenFileForWrite` Int64,
     `CurrentMetric_Read` Int64,
     `CurrentMetric_Write` Int64,
+    `CurrentMetric_NetworkReceive` Int64,
+    `CurrentMetric_NetworkSend` Int64,
     `CurrentMetric_SendScalars` Int64,
     `CurrentMetric_SendExternalTables` Int64,
     `CurrentMetric_QueryThread` Int64,

@@ -27,6 +27,6 @@ services:
     image: php:8.0
     volumes:
       - ./:/var/www/html
-    container_name: php-73
+    container_name: telega
     working_dir: /var/www/html
-    command: php -f /var/www/html/app/telega.php
+    command: php -f /var/www/html/app/Tasks/telega.php

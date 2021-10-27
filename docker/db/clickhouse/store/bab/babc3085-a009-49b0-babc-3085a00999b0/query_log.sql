@@ -1,4 +1,4 @@
-ATTACH TABLE _ UUID '2550a301-383f-461d-a550-a301383f861d'
+ATTACH TABLE _ UUID '5ddaef72-7f28-40a1-9dda-ef727f2870a1'
 (
     `type` Enum8('QueryStart' = 1, 'QueryFinish' = 2, 'ExceptionBeforeStart' = 3, 'ExceptionWhileProcessing' = 4),
     `event_date` Date,
@@ -52,10 +52,8 @@ ATTACH TABLE _ UUID '2550a301-383f-461d-a550-a301383f861d'
     `revision` UInt32,
     `log_comment` String,
     `thread_ids` Array(UInt64),
-    `ProfileEvents.Names` Array(String),
-    `ProfileEvents.Values` Array(UInt64),
-    `Settings.Names` Array(String),
-    `Settings.Values` Array(String),
+    `ProfileEvents` Map(String, UInt64),
+    `Settings` Map(String, String),
     `used_aggregate_functions` Array(String),
     `used_aggregate_function_combinators` Array(String),
     `used_database_engines` Array(String),
@@ -64,7 +62,11 @@ ATTACH TABLE _ UUID '2550a301-383f-461d-a550-a301383f861d'
     `used_formats` Array(String),
     `used_functions` Array(String),
     `used_storages` Array(String),
-    `used_table_functions` Array(String)
+    `used_table_functions` Array(String),
+    `ProfileEvents.Names` Array(String) ALIAS mapKeys(ProfileEvents),
+    `ProfileEvents.Values` Array(UInt64) ALIAS mapValues(ProfileEvents),
+    `Settings.Names` Array(String) ALIAS mapKeys(Settings),
+    `Settings.Values` Array(String) ALIAS mapValues(Settings)
 )
 ENGINE = MergeTree
 PARTITION BY toYYYYMM(event_date)
