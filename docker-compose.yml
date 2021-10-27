@@ -23,3 +23,8 @@ services:
       - "8123:8123"
     volumes:
       - ./docker/db/clickhouse:/var/lib/clickhouse
+  myapp_tasks:
+    image: php
+    restart: always
+    command:
+      - php /app/telega.php
