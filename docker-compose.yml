@@ -25,7 +25,7 @@ services:
     image: node:10
     container_name: nodejs
     restart: unless-stopped
-    working_dir: /var/www
+    working_dir: /var/www/telega
     volumes:
       - ./:/var/www
     tty: true
@@ -43,7 +43,7 @@ services:
       - "443:443"
     volumes:
       - ./:/var/www
-      - ./nginx/conf.d/:/etc/nginx/conf.d/
+      - ./images/nginx/:/etc/nginx/conf.d/
     networks:
       - app-network
 
