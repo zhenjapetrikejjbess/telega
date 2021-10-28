@@ -5,7 +5,7 @@ $first = true;
 
 while (true) {
 
-    if (date('H') == 22) {
+    if (date('H') == 19) {
         sleep(36000);
     }
 
