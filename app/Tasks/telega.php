@@ -12,7 +12,7 @@ while (true) {
     echo " START \n";
     sleep($interval);
 
-    $url = "https://api.telegram.org/bot2050411951:AAFI3tYM0BrvRAl669jiiLRa64vmMZuViJc/getUpdates";
+    $url = "https://api.telegram.org/bot2063105566:AAFMXvwjCAh9L_LyHnSmzeWonTsG48FXzNU/getUpdates";
     $ch = curl_init();
     $optArray = [
         CURLOPT_URL => $url,
@@ -50,7 +50,7 @@ while (true) {
     $message = urlencode(str_replace('"}', "\n", $output));
 
     foreach ($chanenalIds as $id) {
-        $url = "https://api.telegram.org/bot2050411951:AAFI3tYM0BrvRAl669jiiLRa64vmMZuViJc/sendMessage?chat_id=" . $id;
+        $url = "https://api.telegram.org/bot2063105566:AAFMXvwjCAh9L_LyHnSmzeWonTsG48FXzNU/sendMessage?chat_id=" . $id;
         $url = $url . "&text=(ДАЙ ВОДЫ СЫНУ и немного улыбнись) " . $message . " (Если дала то ответь 'OK' или 'ДАЛА' или 'НЕ ЗАЕБУЙ')";
 
         $ch = curl_init();
