@@ -12,7 +12,7 @@ while (true) {
     echo " START \n";
     sleep($interval);
 
-    $url = "https://api.telegram.org/bot2050411951:AAFFpB6mbWYM-vc1At7x_cTjFbI23QJYuxk/getUpdates";
+    $url = "https://api.telegram.org/bot2050411951:AAFI3tYM0BrvRAl669jiiLRa64vmMZuViJc/getUpdates";
     $ch = curl_init();
     $optArray = [
         CURLOPT_URL => $url,
@@ -25,7 +25,7 @@ while (true) {
 
     if (in_array(mb_strtolower($lastMessage['message']['text']), ['ок', 'дала', 'не заебуй']) &&
         $lastSendTime <= $lastMessage['message']['date'] &&
-        $lastMessage['message']['date'] >= (time() - 1800)
+        $lastMessage['message']['date'] >= (time() - 3600)
     ) {
         $first = true;
         echo " SKIP \n";
@@ -50,7 +50,7 @@ while (true) {
     $message = urlencode(str_replace('"}', "\n", $output));
 
     foreach ($chanenalIds as $id) {
-        $url = "https://api.telegram.org/bot2050411951:AAFFpB6mbWYM-vc1At7x_cTjFbI23QJYuxk/sendMessage?chat_id=" . $id;
+        $url = "https://api.telegram.org/bot2050411951:AAFI3tYM0BrvRAl669jiiLRa64vmMZuViJc/sendMessage?chat_id=" . $id;
         $url = $url . "&text=(ДАЙ ВОДЫ СЫНУ и немного улыбнись) " . $message . " (Если дала то ответь 'OK' или 'ДАЛА' или 'НЕ ЗАЕБУЙ')";
 
         $ch = curl_init();
